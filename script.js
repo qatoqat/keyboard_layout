@@ -134,16 +134,29 @@ function validateInput(event) {
   }
 }
 
+function escapeAHK(str) {
+  return str.replace(/[`,;]/g, (match) => {
+    switch (match) {
+      case ",":
+        return "`,"
+      case ";":
+        return "`;"
+      case "`":
+        return "``"
+      default:
+        return match
+    }
+  })
+}
+
 function generateBindings() {
   const keys = document.querySelectorAll(".key input")
   let output = ""
   keys.forEach((key) => {
     if (key.value && key.value !== key.dataset.defaultValue) {
-      let defaultValue = key.dataset.defaultValue
-      if (defaultValue === ";") {
-        defaultValue = "`;"
-      }
-      output += `${defaultValue}::${key.value}\n`
+      const from = escapeAHK(key.dataset.defaultValue)
+      const to = escapeAHK(key.value)
+      output += `${from}::${to}\n`
     }
   })
   document.getElementById("output").value = output || "No custom bindings."
@@ -173,7 +186,9 @@ function applyConfig(config) {
   lines.forEach((line) => {
     const match = line.match(/^(.+?)::(.+)$/)
     if (match) {
-      const [, from, to] = match
+      let [, from, to] = match
+      from = from.replace(/`(,|;|`)/g, "$1")
+      to = to.replace(/`(,|;|`)/g, "$1")
       const input = Array.from(inputs).find((input) => input.dataset.defaultValue === from)
       if (input) {
         input.value = to
@@ -182,9 +197,42 @@ function applyConfig(config) {
   })
 }
 
+function resetKeyboard() {
+  document.querySelectorAll(".key input").forEach((input) => {
+    input.value = ""
+  })
+  document.getElementById("output").value = ""
+  document.getElementById("error-message").textContent = ""
+}
+
+function downloadConfig() {
+  const content = document.getElementById("output").value
+  if (!content) {
+    alert("No configuration to download. Please generate custom bindings first.")
+    return
+  }
+
+  const blob = new Blob([content], { type: "text/plain" })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement("a")
+  a.href = url
+  a.download = "keyboard_config.ahk"
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   createKeyboard()
   document.getElementById("generateButton").addEventListener("click", generateBindings)
   document.getElementById("loadConfigButton").addEventListener("click", loadConfig)
+  document.getElementById("resetButton").addEventListener("click", resetKeyboard)
+  document.getElementById("downloadButton").addEventListener("click", downloadConfig)
+  document.getElementById("toggleDarkMode").addEventListener("click", toggleDarkMode)
 })
 

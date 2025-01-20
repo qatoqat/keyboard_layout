@@ -3,13 +3,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
 }
 
 .container {
   text-align: center;
+  padding: 20px;
 }
 
 #keyboard {
@@ -17,6 +24,11 @@ body {
   background-color: #e0e0e0;
   padding: 10px;
   border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dark-mode #keyboard {
+  background-color: #555;
 }
 
 .row {
@@ -37,6 +49,12 @@ body {
   align-items: center;
   font-size: 12px;
   cursor: text;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark-mode .key {
+  background-color: #444;
+  border-color: #666;
 }
 
 .key input {
@@ -46,30 +64,53 @@ body {
   background: transparent;
   text-align: center;
   font-size: 12px;
+  color: inherit;
 }
 
 .key input::placeholder {
   color: #999;
 }
 
+.dark-mode .key input::placeholder {
+  color: #aaa;
+}
+
 .key.wide {
   width: 60px;
 }
-
 .key.extra-wide {
   width: 80px;
 }
-
 .key.super-wide {
   width: 120px;
 }
 
-#generateButton,
-#loadConfigButton {
+.button-group {
   margin-top: 20px;
+}
+
+button {
+  margin: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.dark-mode button {
+  background-color: #45a049;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.dark-mode button:hover {
+  background-color: #3d8b40;
 }
 
 #output {
@@ -77,10 +118,27 @@ body {
   width: 100%;
   height: 200px;
   resize: vertical;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: monospace;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.dark-mode #output {
+  background-color: #222;
+  color: #fff;
+  border-color: #666;
 }
 
 .error {
   color: red;
   margin-top: 10px;
+}
+
+.dark-mode .error {
+  color: #ff6b6b;
 }
 
