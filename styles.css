@@ -94,7 +94,7 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #4caf50;
+  background-color: #77777777;
   color: white;
   border: none;
   border-radius: 4px;
@@ -102,15 +102,15 @@ button {
 }
 
 .dark-mode button {
-  background-color: #45a049;
+  background-color: #55555577;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #777;
 }
 
 .dark-mode button:hover {
-  background-color: #3d8b40;
+  background-color: #555;
 }
 
 #output {

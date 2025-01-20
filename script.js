@@ -126,10 +126,10 @@ function validateInput(event) {
   const value = input.value.trim()
 
   if (value && !validKeys.has(value)) {
-    input.setAtrribute("data-tooltip", `Invalid key: ${value}`)
+    input.setAttribute("data-tooltip", `Invalid key: ${value}`)
     input.style.color = "red"
   } else {
-    input.removeAtrribute("data-tooltip")
+    input.removeAttribute("data-tooltip")
     input.style.color = ""
   }
 }
@@ -153,6 +153,9 @@ function generateBindings() {
   const keys = document.querySelectorAll(".key input")
   let output = ""
   keys.forEach((key) => {
+    if (key.style.color === "red") {
+      alert(key.getAttribute("data-tooltip"))
+    }
     if (key.value && key.value !== key.dataset.defaultValue) {
       const from = escapeAHK(key.dataset.defaultValue)
       const to = key.value
@@ -202,7 +205,6 @@ function resetKeyboard() {
     input.value = ""
   })
   document.getElementById("output").value = ""
-  document.getElementById("error-message").textContent = ""
 }
 
 function downloadConfig() {
