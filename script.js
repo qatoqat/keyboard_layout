@@ -124,14 +124,13 @@ function createKeyboard() {
 function validateInput(event) {
   const input = event.target
   const value = input.value.trim()
-  const errorMessage = document.getElementById("error-message")
 
-  if (value && !validKeys.has(value.toLowerCase())) {
-    errorMessage.textContent = `Invalid key: ${value}`
+  if (value && !validKeys.has(value)) {
+    input.setAtrribute("data-tooltip", `Invalid key: ${value}`)
     input.style.color = "red"
   } else {
+    input.removeAtrribute("data-tooltip")
     input.style.color = ""
-    errorMessage.textContent = ""
   }
 }
 
