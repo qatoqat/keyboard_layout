@@ -28,8 +28,9 @@ function createKeyboard() {
       keyElement.className = `key ${specialKeys[key] || ""}`
       const input = document.createElement("input")
       input.type = "text"
-      input.value = key
+      input.placeholder = key
       input.maxLength = 20
+      input.dataset.defaultValue = key
       keyElement.appendChild(input)
       rowElement.appendChild(keyElement)
     })
@@ -41,8 +42,8 @@ function generateBindings() {
   const keys = document.querySelectorAll(".key input")
   let output = ""
   keys.forEach((key) => {
-    if (key.value !== key.defaultValue) {
-      output += `${key.defaultValue}::${key.value}\n`
+    if (key.value && key.value !== key.dataset.defaultValue) {
+      output += `${key.dataset.defaultValue}::${key.value}\n`
     }
   })
   document.getElementById("output").value = output || "No custom bindings."
