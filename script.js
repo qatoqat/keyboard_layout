@@ -128,8 +128,9 @@ function validateInput(event) {
 
   if (value && !validKeys.has(value.toLowerCase())) {
     errorMessage.textContent = `Invalid key: ${value}`
-    input.value = ""
+    input.style.color = "red"
   } else {
+    input.style.color = ""
     errorMessage.textContent = ""
   }
 }
@@ -155,7 +156,7 @@ function generateBindings() {
   keys.forEach((key) => {
     if (key.value && key.value !== key.dataset.defaultValue) {
       const from = escapeAHK(key.dataset.defaultValue)
-      const to = escapeAHK(key.value)
+      const to = key.value
       output += `${from}::${to}\n`
     }
   })
