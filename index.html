@@ -10,7 +10,14 @@
     <div class="container">
         <h1>Keyboard Layout Customizer</h1>
         <p>
-            <button id="toggleDarkMode">Toggle Dark Mode</button>
+            <input type="radio" id="setBindings" name="input_mode" checked>
+            <label for="setBindings">Set Bindings</label>
+            
+            <input type="radio" id="setColors" name="input_mode">
+            <label for="setColors">Set Colors</label>
+            <input type="color" id="currentColor" value="#00eeff">
+            <input type="checkbox" id="toggleDarkMode">
+            <label for="toggleDarkMode">Dark Mode</label>
         </p>
         <div id="keyboard"></div>
         <div class="button-group">

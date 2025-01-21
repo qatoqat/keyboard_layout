@@ -114,6 +114,7 @@ function createKeyboard() {
       input.maxLength = 20
       input.dataset.defaultValue = key
       input.addEventListener("input", validateInput)
+      input.addEventListener("click", setKeyColor)
       keyElement.appendChild(input)
       rowElement.appendChild(keyElement)
     })
@@ -225,9 +226,34 @@ function downloadConfig() {
   URL.revokeObjectURL(url)
 }
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode")
+function toggleDarkMode(event) {
+  if (event.target.checked) {
+    document.body.classList.add("dark-mode")
+  } else {
+    document.body.classList.remove("dark-mode")
+  }
 }
+
+function setModeColors() {
+  document.querySelectorAll('div.key > input').forEach(input => {
+    input.style.cursor = "crosshair"
+    input.readOnly = true
+  })
+}
+
+function setKeyColor(event) {
+  if (document.getElementById("setColors").checked) {
+    event.target.style.backgroundColor = document.getElementById("currentColor").value
+  }
+}
+
+function setModeBindings() {
+  document.querySelectorAll('div.key > input').forEach(input => {
+    input.style.cursor = ""
+    input.readOnly = false
+  })
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   createKeyboard()
@@ -235,6 +261,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("loadConfigButton").addEventListener("click", loadConfig)
   document.getElementById("resetButton").addEventListener("click", resetKeyboard)
   document.getElementById("downloadButton").addEventListener("click", downloadConfig)
-  document.getElementById("toggleDarkMode").addEventListener("click", toggleDarkMode)
+  document.getElementById("toggleDarkMode").addEventListener("change", toggleDarkMode)
+  document.getElementById("setBindings").addEventListener("click", setModeBindings)
+  document.getElementById("setColors").addEventListener("click", setModeColors)
 })
+
+
+
 
