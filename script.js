@@ -236,7 +236,7 @@ function toggleDarkMode(event) {
 
 function setKeyColor(event) {
   if (document.getElementById("setColors").checked) {
-    event.target.style.backgroundColor = document.getElementById("currentColor").value
+    event.parent.target.style.backgroundColor = document.getElementById("currentColor").value
   }
 }
 
