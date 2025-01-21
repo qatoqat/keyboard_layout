@@ -7,7 +7,7 @@ body {
   margin: 0;
   color: #333;
   background-color: #f0f0f0;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 body.dark-mode {
@@ -25,7 +25,7 @@ body.dark-mode {
   background-color: #e0e0e0;
   padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 
 .dark-mode #keyboard {
@@ -48,9 +48,8 @@ body.dark-mode {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
   cursor: text;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .dark-mode .key {
@@ -64,7 +63,6 @@ body.dark-mode {
   border: none;
   background: transparent;
   text-align: center;
-  font-size: 12px;
   color: inherit;
 }
 
@@ -99,7 +97,7 @@ button {
   color: #333;
   border: none;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 
 .dark-mode button {
@@ -126,7 +124,7 @@ button:hover {
   border-radius: 4px;
   padding: 10px;
   font-family: monospace;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .dark-mode #output {

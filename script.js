@@ -114,7 +114,7 @@ function createKeyboard() {
       input.maxLength = 20
       input.dataset.defaultValue = key
       input.addEventListener("input", validateInput)
-      input.addEventListener("click", setKeyColor)
+      input.addEventListener("mousedown", setKeyColor)
       keyElement.appendChild(input)
       rowElement.appendChild(keyElement)
     })
@@ -236,8 +236,12 @@ function toggleDarkMode(event) {
 
 function setKeyColor(event) {
   if (document.getElementById("setColors").checked) {
-    event.target.parentNode.style.backgroundColor = document.getElementById("currentColor").value
-  }
+    if (event.which == 1) {
+      event.target.parentNode.style.backgroundColor = document.getElementById("currentColor").value
+    } else {
+      document.getElementById("currentColor").value = event.target.parentNode.style.backgroundColor 
+    }
+  } 
 }
 
 function setModeColors(event) {
