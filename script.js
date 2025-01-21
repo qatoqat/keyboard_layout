@@ -239,7 +239,10 @@ function setKeyColor(event) {
     if (event.which == 1) {
       event.target.parentNode.style.backgroundColor = document.getElementById("currentColor").value
     } else {
-      document.getElementById("currentColor").value = event.target.parentNode.style.backgroundColor 
+      let bgColor = event.target.parentNode.style.backgroundColor
+      if (bgColor) {
+        document.getElementById("currentColor").value = rgbToHex(bgColor)
+      }
     }
   } 
 }
@@ -260,6 +263,15 @@ function setModeBindings(event) {
       input.readOnly = false
     })
   }
+}
+
+function rgbToHex(rgb) {
+  const result = rgb.match(/\d+/g);
+  if (!result || result.length !== 3) return null;
+
+  return '#' + result.map((val) => {
+      return parseInt(val, 10).toString(16).padStart(2, '0');
+  }).join('');
 }
 
 
