@@ -234,24 +234,28 @@ function toggleDarkMode(event) {
   }
 }
 
-function setModeColors() {
-  document.querySelectorAll('div.key > input').forEach(input => {
-    input.style.cursor = "crosshair"
-    input.readOnly = true
-  })
-}
-
 function setKeyColor(event) {
   if (document.getElementById("setColors").checked) {
     event.target.style.backgroundColor = document.getElementById("currentColor").value
   }
 }
 
-function setModeBindings() {
-  document.querySelectorAll('div.key > input').forEach(input => {
-    input.style.cursor = ""
-    input.readOnly = false
-  })
+function setModeColors(event) {
+  if (event.target.checked) {
+      document.querySelectorAll('.key > input').forEach(input => {
+      input.style.cursor = "crosshair"
+      input.readOnly = true
+    })
+  }
+}
+
+function setModeBindings(event) {
+  if (event.target.checked) {
+    document.querySelectorAll('.key > input').forEach(input => {
+      input.style.cursor = ""
+      input.readOnly = false
+    })
+  }
 }
 
 
